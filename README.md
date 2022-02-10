@@ -1,2 +1,5 @@
-# corporate
-Corporate policies and other documents
+# community
+
+Community guidelines, corporate policies and other documents.
+
+Check https://code.agilescientific.com/community
