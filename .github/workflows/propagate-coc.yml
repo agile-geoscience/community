@@ -1,0 +1,27 @@
+name: Propagate COC
+
+on: push
+
+jobs:
+  copy-file:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        repo: ["welly", "striplog", "bruges", "gio", "kosu", "redflag"]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Push to repos
+      uses: dmnemec/copy_file_to_another_repo_action@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source_file: 'CODE_OF_CONDUCT.md'
+        destination_repo: 'agilescientific/${{ matrix.repo }}'
+        user_email: 'matt@agilescientific.com'
+        user_name: 'kwinkunks'
+        commit_message: 'Updated Code of Conduct'
